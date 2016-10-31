@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/jphacks/NG_1604_2/issues"
   },
-  "homepage": "https://github.com/jphacks/NG_1604_2#readme"
+  "homepage": "https://github.com/jphacks/NG_1604_2#readme",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "dotenv": "^2.0.0"
+  }
 }
