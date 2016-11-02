@@ -1,0 +1,106 @@
+{
+  "users": {
+    "pokohide": {
+      "name": "ぽこひで",
+      "univ": "nagoya",
+      "grade": 3,
+      "profile": "カタカタ男子",
+      "profile_img": "http://hoge.huga/piyo.jpg",
+      "koma": "2/3/6/9/13/14/16/18/20",
+      "chats": {
+        "abc123": true
+      }
+    },
+    "cheese": {
+      "name": "ちーず",
+    }
+  },
+  
+  "univs": {
+    "chukyo": {
+      "name": "中京大学",
+      "campuses": {
+        "名古屋キャンパス": {
+          "address": "愛知県名古屋市...",
+          "near": {
+            "meijo": "八事キャンパス",
+            "nanzan": "◯◯キャンパス"
+          }
+        },
+        "豊田キャンパス": {
+          "address": "愛知県豊田市...",
+          "near": {}
+        }
+      }
+    },
+    "meijo": {
+      "name": "名城大学",
+      "campuses": {
+        "天白キャンパス": {
+          "address": "愛知県名古屋市...",
+          "near": {}
+        },
+        "八事キャンパス": {
+          "address": "愛知県名古屋市...",
+          "near": {
+            "chukyo": "名古屋キャンパス",
+            "nanzan": "◯◯キャンパス"
+          }
+        }
+      }
+    }
+  },
+  
+  "matches": {
+    "pokohide": {
+      "give_like": {
+        "cheese": {
+          "timestamp": 1478058820
+        }
+      },
+      "get_like": {
+        "cheese": {
+          "timestamp": 1478058820
+        }
+      },
+      "matche": {
+        "cheese": {
+          "timestamp": 1478058820
+        }
+      }
+    }
+  },
+  
+  "chats": {
+    "abc123": {
+      "title": "ぽこひでとちーずのお部屋",
+      "lastMessage": "おはよう",
+      "timestamp": 1478058820
+    },
+    "def456": {}
+  },
+  
+  "members": {
+    "abc123": {
+      "pokohide": true,
+      "cheese": true
+    },
+    "def456": {}
+  },
+  
+  "messages": {
+    "abc123": {
+      "m1": {
+        "name": "pokohide",
+        "message": "こんにちは",
+        "timestamp": 1478058820
+      },
+      "m2": {
+        "name": "cheese",
+        "message": "こんばんは",
+        "timestamp": 1478059314
+      }
+    },
+    "def456": {}
+  }
+}
