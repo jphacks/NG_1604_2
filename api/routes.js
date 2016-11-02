@@ -6,6 +6,7 @@ const json = require('koa-json')
 const body = require('koa-body')()
 
 const users = require('./users/index')
+const healthCheck = require('./health_check')
 
 const route = (app) => {
   // json対応
@@ -16,6 +17,8 @@ const route = (app) => {
   })
 
   API
+    .get('/', healthCheck)
+
     .get('/users/fetch', users.fetch)
     .post('/users', body, users.update)
 
