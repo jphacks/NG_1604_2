@@ -6,7 +6,13 @@
       "grade": 3,
       "profile": "カタカタ男子",
       "profile_img": "http://hoge.huga/piyo.jpg",
-      "koma": "2/3/6/9/13/14/16/18/20",
+      "classes": {
+        "mon": "0,1,1,0,0",
+        "tue": "",
+        "wed": "",
+        "thu": "",
+        "fri": ""
+      },
       "chats": {
         "{room_id}": true
       }
