@@ -3,6 +3,8 @@
 const fb = require('../../lib/firebase')
 const q = require('q')
 
+const match = require('./match')
+
 /*
 * GET /api/users/fetch
 * userID
@@ -10,7 +12,6 @@ const q = require('q')
 const fetch = function* (next) {
   const deferred = q.defer()
   const userID = this.params.user_id
-
 
   this.body = yield deferred.promise
 }
@@ -30,23 +31,6 @@ const update = function* (next) {
   // deferred.reject({ message: err })
 
   this.body = yield deferred.promise
-}
-
-/*
-* POST /api/users/match
-*
-*/
-const match = function* (next) {
-  const deferred = q.defer()
-  const userID = this.request.body.user_id
-
-  // match process
-  deferred.resolve({
-    message: 'ok'
-  })
-  // deferred.reject({ message: err })
-
-  this.body = yield deferred.promise 
 }
 
 module.exports = {

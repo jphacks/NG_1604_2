@@ -3,6 +3,7 @@
 const koa = require('koa')
 const cors = require('kcors')
 const app = koa()
+const watch = require('./watch/index')
 const port = process.env.PORT || 8080
 
 const origins = {
@@ -11,6 +12,9 @@ const origins = {
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With']
 }
+
+// 監視
+watch()
 
 // AVOID CROSS DOMEIN ISSUE
 app.use(cors(origins))
