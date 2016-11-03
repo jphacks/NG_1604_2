@@ -2,7 +2,9 @@
   "users": {
     "{uid}": {
       "name": "ぽこひで",
+      "gender": "男性",
       "univ": "nagoya",
+      "department": "カタカタ学部",
       "grade": 3,
       "profile": "カタカタ男子",
       "profile_img": "http://hoge.huga/piyo.jpg",
