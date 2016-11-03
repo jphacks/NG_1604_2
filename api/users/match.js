@@ -2,13 +2,16 @@
 
 const fb = require('../../lib/firebase')
 const timestamp = new (require('../../lib/timestamp'))()
+const User = require('./user')
 const q = require('q')
 
 class Match {
   constructor(body) {
-    this.userId = body.user_id
-    this.opponentIds = body.opponent_ids.split(',')
-    this.matchesRef = fb.database().ref(`matches/${this.userId}`)
+    this.user = new User(body.user_id)
+    this.matchesRef = fb.database().ref(`matches/${this.user.id}`)
+
+    this.opponentIds = body.like_list.split(',')
+    this.dislike = body.dislike_list.split(',') // これは使わないけど一旦
   }
 
   /*
@@ -28,27 +31,27 @@ class Match {
   }
 
   /*
-  * userIdがopponentIdをlikeする
+  * user.idがopponentIdをlikeする
   */
   likeTo(opponentId) {
     this.matchesRef.child(`like_to/${opponentId}`).set({
       timestamp: timestamp.unix()
     }).then(() => {
-      console.log(`${this.userId} likes to ${opponentId}.`)
+      //console.log(`${this.user.id} likes to ${opponentId}.`)
     }).catch((err) => {
       console.log(`error occured: ${err.message}`)
     })
   }
 
   /*
-  * opponentIdがuserIdにlikeされる
+  * opponentIdがuser.idにlikeされる
   */
   likedBy(opponentId) {
     const opponentRef = fb.database().ref(`matches/${opponentId}`)
-    opponentRef.child(`liked_from/${this.userId}`).set({
+    opponentRef.child(`liked_from/${this.user.id}`).set({
       timestamp: timestamp.unix()
     }).then(() => {
-      console.log(`${opponentId} is liked from ${this.userId}.`)
+      //console.log(`${opponentId} is liked from ${this.user.id}.`)
     }).catch((err) => {
       console.log(`error occured: ${err.message}`)
     })
@@ -58,58 +61,87 @@ class Match {
   * opponentIdとマッチ完了処理
   */
   matchingDone(opponentId) {
-    console.log(`${opponentId}とマッチング完了`)
+    const opponent = new User(opponentId)
+    const now = timestamp.unix()
+    console.log(`${opponent.id}とマッチング完了`)
 
-    // ${this.userId}のliked_fromから${opponentId}をRemvoeする
-    //this.matchesRef.child(`liked_from/${opponentId}`).remove()
+    // ${this.user.id}のliked_fromから${opponent.id}をRemvoeする
+    //this.matchesRef.child(`liked_from/${opponent.id}`).remove()
     //  .then(() => {
-    //    console.log(`${this.userId}のliked_fromから${opponentId}をRemvoeしました。`)
+    //    console.log(`${this.user.id}のliked_fromから${opponent.id}をRemvoeしました。`)
     //  })
     //  .catch((err) => {
     //    console.log(`Remove failed: ${err.message}`)
     //  })
 
-    // ${opponentId}のlike_toから${this.userId}をRemoveする
-    const opponentRef = fb.database().ref(`matches/${opponentId}`)
-    //opponentRef.child(`like_to/${this.userId}`).remove()
+    // ${opponent.id}のlike_toから${this.user.id}をRemoveする
+    const opponentRef = fb.database().ref(`matches/${opponent.id}`)
+    //opponentRef.child(`like_to/${this.user.id}`).remove()
     //  .then(() => {
-    //    console.log(`${opponentId}のlike_toから${this.userId}をRemoveしました。`)
+    //    console.log(`${opponent.id}のlike_toから${this.user.id}をRemoveしました。`)
     //  })
     //  .catch((err) => {
     //    console.log(`Remvoe failed: ${err.message}`)
     //  })
 
-    // ${opponentId}のmatcheに${this.userId}をpushする
-    opponentRef.child(`matche/${this.userId}`).set({
+
+    // ${opponent.id}のmatcheに${this.user.id}をpushする
+    opponentRef.child(`matche/${this.user.id}`).set({
       timestamp: now
     }).then(() => {
-      console.log(`${opponentId}のmatcheに${this.userId}をpushしました。`)
+      console.log(`${opponent.id}のmatcheに${this.user.id}をpushしました。`)
     })
     .catch((err) => {
       console.log(`Push failed: ${err.message}`)
     })
 
-    // ${this.userId}のmatcheに${opponentId}をpushする
-    this.matchesRef.child(`matche/${opponentId}`).set({
+    // ${this.user.id}のmatcheに${opponent.id}をpushする
+    this.matchesRef.child(`matche/${opponent.id}`).set({
       timestamp: now
     }).then(() => {
-      console.log(`${this.userId}のmatcheに${opponentId}をpushしました。`)
+      console.log(`${this.user.id}のmatcheに${opponent.id}をpushしました。`)
     })
     .catch((err) => {
       console.log(`Push failed: ${err.message}`)
     })
+
+    // ${this.user.id}と${opponent.id}のチャットルームを作成する
+    this.createChatRoom(this.user, opponent)
 
     // 結果を両者にプッシュ通知
-    pushNotify(this.userId, opponentId)
+    pushNotify(this.user, opponent)
 
     // usersにmatch_doneに入れる
   }
 
   /*
+  * userとopponentのプライベートルームを作る
+  */
+  createChatRoom(user, opponent) {
+    const now = timestamp.unix()
+    let chatRoom = {
+      title: 'aaaaaaaaaa',
+      lastMessage: 'プライベートルームです。',
+      isPublic: false,
+      timestamp: now,
+      members: {}
+    }
+    chatRoom['members'][user.id] = { name: 'ぽこひで' }
+    chatRoom['members'][opponent.id] = { name: 'ぽこ' }
+    console.log(chatRoom)
+    fb.database().ref('chats').push().set(chatRoom)
+    .then(() => {
+      console.log('チャットルームを作成しました。')
+    }).catch((err) => {
+      console.log(err.message)
+    })
+  }
+
+  /*
   * プッシュ通知を送る
   */
-  pushNotify(userId) {
-    console.log(`${userId}にマッチングお知らせをプッシュします`)
+  pushNotify(user) {
+    console.log(`${user}にマッチングお知らせをプッシュします`)
   }
 
 

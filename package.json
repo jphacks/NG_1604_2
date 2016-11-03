@@ -22,6 +22,7 @@
   "homepage": "https://github.com/jphacks/NG_1604_2#readme",
   "dependencies": {
     "bluebird": "^3.4.6",
+    "co": "^4.6.0",
     "dotenv": "^2.0.0",
     "firebase": "^3.5.2",
     "https": "^1.0.0",
