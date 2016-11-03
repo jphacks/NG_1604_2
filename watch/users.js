@@ -8,7 +8,7 @@ const usersRef = fb.database().ref('users')
 */
 const watchUsers = () => {
   usersRef.on('value', (snapshot) => {
-    console.log(snapshot.val())
+    console.log(`${snapshot.val()}の変更を検知`)
   }, (errorObject) => {
     console.log(`the read failed: ${errorObject.code}`)
   })
