@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/jphacks/NG_1604_2.git"
   },
+  "engine": {
+    "npm": "3.10.3",
+    "node": "v4.4.3"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
