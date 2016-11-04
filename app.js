@@ -1,8 +1,11 @@
 'use strict'
 
+require('dotenv').load()
+
 const koa = require('koa')
 const cors = require('kcors')
 const app = koa()
+const mongoose = require('mongoose')
 const watch = require('./watch/index')
 const port = process.env.PORT || 8080
 
@@ -18,6 +21,14 @@ watch()
 
 // AVOID CROSS DOMEIN ISSUE
 app.use(cors(origins))
+
+// CONNECT MONGODB
+const mongo = {
+  db: process.env.MONGODB_URI,
+  options: {}
+}
+mongoose.Promise = require('q').Promise
+mongoose.connect(mongo.db, mongo.options)
 
 // Run Server
 app.listen(port, () => {
@@ -37,4 +48,4 @@ app.use(function* (next) {
 })
 
 // define route
-const router = require('./api/routes')(app)
+const router = require('./app/route')(app)
