@@ -24,6 +24,8 @@ const route = (app) => {
     .post('/users', body, users.create)
     .post('/users/:uuid', body, users.update)
     .post('/users/:uuid/remove', body, users.remove)
+
+    .post('/users/match', body, users.match)
     //.post('/match', body, users.match)
 
   app
