@@ -18,6 +18,12 @@
       },
       "chats": {
         "{room_id}": true
+      },
+      "matches": {
+        "{uid}": {
+          "timestamp": 12345678,
+          "room_id": "{room_id}"
+        }
       }
     },
     "{uid}": {
@@ -55,26 +61,6 @@
             "chukyo": "名古屋キャンパス",
             "nanzan": "◯◯キャンパス"
           }
-        }
-      }
-    }
-  },
-  
-  "matches": {
-    "{uid}": {
-      "like_to": {
-        "{uid}": {
-          "timestamp": 1478058820
-        }
-      },
-      "liked_from": {
-        "{uid}": {
-          "timestamp": 1478058820
-        }
-      },
-      "matche": {
-        "{uid}": {
-          "timestamp": 1478058820
         }
       }
     }
