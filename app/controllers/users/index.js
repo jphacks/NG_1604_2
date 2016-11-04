@@ -4,7 +4,7 @@ const fb = require('../../../lib/firebase')
 const User = require('../../models/users')
 const q = require('q')
 
-//const match = require('./match')
+const match = require('./match')
 
 /*
 * GET /api/users
@@ -60,8 +60,9 @@ const create = function* (next) {
 */
 const update = function* (next) {
   const deferred = q.defer()
+  const uuid = this.params.uuid
   const body = this.request.body
-  const promise = User.update({ uuid: body.uuid }, { $set: body }, { upsert: false, multi: true }).exec()
+  const promise = User.update({ uuid: uuid }, { $set: body }, { upsert: false, multi: true }).exec()
   promise.then(() => {
     deferred.resolve({
       message: 'updated'
@@ -76,7 +77,7 @@ const update = function* (next) {
 */
 const remove = function* (next) {
   const deferred = q.defer()
-  const uuid = this.request.body.uuid
+  const uuid = this.params.uuid
   const promise = User.remove({ uuid: uuid }).exec()
   promise.then(() => {
     deferred.resolve({
@@ -92,5 +93,5 @@ module.exports = {
   create: create,
   update: update,
   remove: remove
-  //match: match
+  match: match
 }
