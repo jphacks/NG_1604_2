@@ -1,18 +1,26 @@
 {
   "users": {
-    "pokohide": {
+    "{uid}": {
       "name": "ぽこひで",
+      "gender": "男性",
       "univ_name": "名古屋大学",
       "univ_id": "nagoya",
+      "department": "カタカタ学部",
       "grade": 3,
       "profile": "カタカタ男子",
       "profile_img": "http://hoge.huga/piyo.jpg",
-      "koma": "2/3/6/9/13/14/16/18/20",
+      "classes": {
+        "mon": "0,1,1,0,0",
+        "tue": "",
+        "wed": "",
+        "thu": "",
+        "fri": ""
+      },
       "chats": {
-        "abc123": true
+        "{room_id}": true
       }
     },
-    "cheese": {
+    "{uid}": {
       "name": "ちーず",
     }
   },
@@ -53,19 +61,19 @@
   },
   
   "matches": {
-    "pokohide": {
-      "give_like": {
-        "cheese": {
+    "{uid}": {
+      "like_to": {
+        "{uid}": {
           "timestamp": 1478058820
         }
       },
-      "get_like": {
-        "cheese": {
+      "liked_from": {
+        "{uid}": {
           "timestamp": 1478058820
         }
       },
       "matche": {
-        "cheese": {
+        "{uid}": {
           "timestamp": 1478058820
         }
       }
@@ -73,35 +81,34 @@
   },
   
   "chats": {
-    "abc123": {
+    "{room_id}": {
       "title": "ぽこひでとちーずのお部屋",
       "lastMessage": "こんばんは",
-      "timestamp": 1478059314
-    },
-    "def456": {}
-  },
-  
-  "members": {
-    "abc123": {
-      "pokohide": true,
-      "cheese": true
-    },
-    "def456": {}
+      "timestamp": 1478059314,
+      "isPublic": false,
+      "members": {
+        "{uid}": {
+          "name": "ぽこひで"
+        },
+        "{uid}": {
+          "name": "ちーず"
+        }
+      }
+    }
   },
   
   "messages": {
-    "abc123": {
-      "m1": {
-        "name": "pokohide",
+    "{room_id}": {
+      "{message_id}": {
+        "name": "{uid}",
         "message": "こんにちは",
         "timestamp": 1478058820
       },
-      "m2": {
-        "name": "cheese",
+      "{message_id}": {
+        "name": "{uid}",
         "message": "こんばんは",
         "timestamp": 1478059314
       }
-    },
-    "def456": {}
+    }
   }
 }
