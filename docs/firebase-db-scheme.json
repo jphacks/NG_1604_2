@@ -2,7 +2,8 @@
   "users": {
     "pokohide": {
       "name": "ぽこひで",
-      "univ": "nagoya",
+      "univ_name": "名古屋大学",
+      "univ_id": "nagoya",
       "grade": 3,
       "profile": "カタカタ男子",
       "profile_img": "http://hoge.huga/piyo.jpg",
