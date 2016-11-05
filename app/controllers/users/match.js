@@ -56,14 +56,17 @@ const likeEachOther = (uuid, opponent_uuid) => {
   promise.then(() => {
     console.log('相互いいねDone')
     createPrivateRoom(uuid, opponent_uuid)
+    console.log('ちゃんと作れてる？')
   })
 }
 
 // createPrivateRoom(uuid, opponent_uuid)
 const createPrivateRoom = (uuid, opponent_uuid) => {
+  console.log('createChatRoom')
   const now = moment().unix()
+  console.log(1)
   
-  const newChatRoom = fb.database.ref('chatrroms').push()
+  const newChatRoom = fb.database.ref('chatrooms').push()
   console.log(111)
 
   const promise1 = User.findOne({ uuid: uuid }).exec()
