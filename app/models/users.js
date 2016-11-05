@@ -13,14 +13,14 @@ const UserSchema = new Schema({
   univ_name:   {type: String, required: true},
   univ_id:     {type: String, required: true},
   profile:     {type: String, default: ''},
-  profileImg:  {type: String, required: true},
+  profile_img:  {type: String, required: true},
   department:  {type: String, required: true},
-  classrooms: {
-  	mon:       {type: String, default: '0,0,0,0,0'},
-  	tue:       {type: String, default: '0,0,0,0,0'},
-  	wed:       {type: String, default: '0,0,0,0,0'},
-  	thu:       {type: String, default: '0,0,0,0,0'},
-  	fri:       {type: String, default: '0,0,0,0,0'}
+  class_room: {
+    mon:       {type: String, default: '0,0,0,0,0'},
+    tue:       {type: String, default: '0,0,0,0,0'},
+    wed:       {type: String, default: '0,0,0,0,0'},
+    thu:       {type: String, default: '0,0,0,0,0'},
+    fri:       {type: String, default: '0,0,0,0,0'}
   },
   recommends:  {type: String, default: ''},
   createdAt:   {type: Date, default: moment()}

@@ -75,11 +75,19 @@ const show = function* (next) {
 const create = function* (next) {
   const deferred = q.defer()
   const body = this.request.body
-  //
-  console.log(this.request.body)
+
   const user = new User(body)
+  console.log(this.request.body)
+  console.log(this.request.body.class_room)
+  console.log(this.request.body.gender)
   user.save()
-  analyze(user)
+  .then(() => {
+    console.log('saved')
+    analyze(user)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
   this.body = {
     user: user,
     message: 'create'
