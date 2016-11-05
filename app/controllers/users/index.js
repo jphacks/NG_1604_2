@@ -32,22 +32,21 @@ const show = function* (next) {
   const promise = User.findOne({ uuid: uuid }).exec()
   promise.then((user) => {
     console.log(user)
+    const recommend = user.recommends.split(',')
+    const recommends = recommend.map((elem) => {
+      return {uuid: elem}
+    })
+    const promise2 = User.find({ '$or': recommends }).exec()
+    promise2.then((users) => {
+      console.log(users)
+    })
     deferred.resolve({
       user: user,
+      recommends: [user, user, user, user, user],
       message: 'show'
     })
   })
   this.body = yield deferred.promise
-}
-
-/*
-* GET /api/users/:uuid/fetch
-* @param {integer} uuid
-*/
-const fetch = function* (next) {
-  const deferred = q.defer()
-  const uuid = this.params.uuid
-  const promise = 
 }
 
 /*

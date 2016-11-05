@@ -12,6 +12,7 @@ const UserSchema = new Schema({
   univ:       {type: String, required: true},
   thumb:      {type: String, required: true},
   department: {type: String, required: true},
+  recommends: {type: String, default: ''},
   createdAt:  {type: Date, default: moment()}
 })
 
