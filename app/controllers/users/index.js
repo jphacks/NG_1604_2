@@ -41,6 +41,16 @@ const show = function* (next) {
 }
 
 /*
+* GET /api/users/:uuid/fetch
+* @param {integer} uuid
+*/
+const fetch = function* (next) {
+  const deferred = q.defer()
+  const uuid = this.params.uuid
+  const promise = 
+}
+
+/*
 * POST /api/users/
 */
 const create = function* (next) {
