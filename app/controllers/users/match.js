@@ -64,17 +64,13 @@ const likeEachOther = (uuid, opponent_uuid) => {
 const createPrivateRoom = (uuid, opponent_uuid) => {
   console.log('createChatRoom')
   const now = moment().unix()
-  console.log(1)
   
   const newChatRoom = fb.database().ref('chatrooms').push()
-  console.log(111)
 
   const promise1 = User.findOne({ uuid: uuid }).exec()
   promise1.then((user) => {
-    console.log('promise1')
     const promise2 = User.findOne({ uuid: opponent_uuid }).exec()
     promise2.then((opponent) => {
-      console.log('promise2')
       let chatRoom = {
         title: `${user.name}と${opponent.name}の部屋`,
         lastMessage: 'プライベートルームです。',
@@ -87,20 +83,18 @@ const createPrivateRoom = (uuid, opponent_uuid) => {
 
       newChatRoom.set(chatRoom)
       console.log(`${user.name}と${opponent.name}のチャットルームを作成しました。`)
+
+      // ユーザから参照できるように
+      fb.database().ref(`users/${uuid}/matches/${opponent_uuid}`).set({
+        timestamp: now,
+        room_id: newChatRoom.key
+      })
+
+      fb.database().ref(`users/${opponent_uuid}/matches/${uuid}`).set({
+        timestamp: now,
+        room_id: newChatRoom.key
+      })
     })
-  })
-
-  console.log(222)
-
-  // ユーザから参照できるように
-  fb.database.ref(`users/${uuid}/matches/${opponent_uuid}`).set({
-    timestamp: now,
-    room_id: newChatRoom.key
-  })
-  console.log(333)
-  fb.database.ref(`users/${opponent_uuid}/matches/${uuid}`).set({
-    timestamp: now,
-    room_id: newChatRoom.key
   })
 }
 
