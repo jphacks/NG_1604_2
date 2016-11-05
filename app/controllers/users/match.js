@@ -66,7 +66,7 @@ const createPrivateRoom = (uuid, opponent_uuid) => {
   const now = moment().unix()
   console.log(1)
   
-  const newChatRoom = fb.database.ref('chatrooms').push()
+  const newChatRoom = fb.database().ref('chatrooms').push()
   console.log(111)
 
   const promise1 = User.findOne({ uuid: uuid }).exec()
