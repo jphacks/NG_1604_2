@@ -6,6 +6,7 @@ const json = require('koa-json')
 const body = require('koa-body')()
 
 const users = require('./controllers/users/index')
+const likes = require('./controllers/likes/index')
 const healthCheck = require('./controllers/health_check')
 
 const route = (app) => {
@@ -24,9 +25,12 @@ const route = (app) => {
     .post('/users', body, users.create)
     .post('/users/:uuid', body, users.update)
     .post('/users/:uuid/remove', body, users.remove)
-
     .post('/users/match', body, users.match)
-    //.post('/match', body, users.match)
+    
+
+    .get('/likes', likes.index)
+    .get('/likes/:id', likes.show)
+    .post('/likes/:id/remove', body, likes.remove)
 
   app
     .use(API.routes())

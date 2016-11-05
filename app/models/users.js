@@ -15,7 +15,7 @@ const UserSchema = new Schema({
   profile:     {type: String, default: ''},
   profile_img:  {type: String, required: true},
   department:  {type: String, required: true},
-  class_room: {
+  classes: {
     mon:       {type: String, default: '0,0,0,0,0'},
     tue:       {type: String, default: '0,0,0,0,0'},
     wed:       {type: String, default: '0,0,0,0,0'},

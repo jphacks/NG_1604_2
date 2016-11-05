@@ -13,11 +13,11 @@ const moment = require('moment')
 const match = function* (next) {
   const deferred = q.defer()
   const uuid = this.params.uuid
-  const likeList = this.request.body.like_list.split(',')
-  const dislikeList = this.request.body.dislike_list.split(',')
+  const opponent_uuid = this.request.body.opponent_uuid
+  const result = this.request.body.result
 
-  for(let i=0; i<likeList.length; i++) {
-    likeTo(uuid, likeList[i])
+  if(result === true) {
+    likeTo(uuid, opponent_uuid)
   }
 
   this.body = {
