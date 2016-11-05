@@ -11,10 +11,17 @@ const moment = require('moment')
 * @param {integer} uuid
 */
 const match = function* (next) {
+  console.log(1)
   const deferred = q.defer()
+  console.log(2)
   const uuid = this.params.uuid
+  console.log(3)
   const opponent_uuid = this.request.body.opponent_uuid
-  const result = this.request.body.result
+  console.log(4)
+  const result = this.request.body.match_result
+  console.log(5)
+
+  console.log(this.request.body)
 
   if(result === true) {
     console.log('match result is true')
