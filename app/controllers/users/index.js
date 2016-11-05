@@ -77,13 +77,10 @@ const create = function* (next) {
   const body = this.request.body
 
   const user = new User(body)
-  console.log(this.request.body)
-  console.log(this.request.body.class_room)
-  console.log(this.request.body.gender)
   user.save()
   .then(() => {
     console.log('saved')
-    analyze(user)
+    analyze.calculateTF(body.uuid)
   })
   .catch((err) => {
     console.log(err)
@@ -107,12 +104,9 @@ const update = function* (next) {
   const body = this.request.body
   //
   console.log(this.request.body)
-  const promise = User.update({ uuid: uuid }, { $set: body }, { upsert: false, multi: true }).exec()
+  const promise = User.update({ uuid: uuid }, { $set: body }, { upsert: true, multi: false }).exec()
   promise.then(() => {
-    analyze({
-      uuid: uuid,
-      profile: body.profile || ''
-    })
+    analyze.calculateTF(uuid)
     deferred.resolve({
       message: 'updated'
     })
