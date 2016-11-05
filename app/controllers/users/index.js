@@ -62,6 +62,9 @@ const create = function* (next) {
     user: user,
     message: 'create'
   }
+
+  // fb set
+  fb.database().ref(`users/${body.uuid}`).set(body)
 }
 
 /*
@@ -78,6 +81,10 @@ const update = function* (next) {
       message: 'updated'
     })
   })
+
+  // fb set
+  fb.database().ref(`users/${uuid}`).set(body)
+
   this.body = yield deferred.promise
 }
 
