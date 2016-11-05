@@ -13,6 +13,8 @@ const match = require('./match')
 const index = function* (next) {
   const deferred = q.defer()
   const promise = User.find().exec()
+  //
+  console.log(this.params)
   promise.then((users) => {
     console.log(users)
     deferred.resolve({
@@ -56,6 +58,8 @@ const show = function* (next) {
 const create = function* (next) {
   const deferred = q.defer()
   const body = this.request.body
+  //
+  console.log(this.request.body)
   const user = new User(body)
   user.save()
   analyze(user)
@@ -76,6 +80,8 @@ const update = function* (next) {
   const deferred = q.defer()
   const uuid = this.params.uuid
   const body = this.request.body
+  //
+  console.log(this.request.body)
   const promise = User.update({ uuid: uuid }, { $set: body }, { upsert: false, multi: true }).exec()
   promise.then(() => {
     analyze({
