@@ -52,10 +52,10 @@ const likeEachOther = (uuid, opponent_uuid) => {
   like.save()
 
   // opponent_uuid liked uuid
-  const promise = Like.update({ uuid: opponent_uuid, like_to: uuid }, { $set: { is_match: true } }, { upsert: false, multi: true }).exec()
+  const promise = Like.update({ uuid: opponent_uuid, like_to: uuid }, { $set: { is_match: true } }, { upsert: true, multi: true }).exec()
   promise.then(() => {
     console.log('相互いいねDone')
-    createNewRoom(uuid, opponent_uuid)
+    createPrivateRoom(uuid, opponent_uuid)
   })
 }
 
