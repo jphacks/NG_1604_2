@@ -2,6 +2,7 @@
 
 const fb = require('../../../lib/firebase')
 const User = require('../../models/users')
+const analyze = require('../../../lib/analyze')
 const q = require('q')
 
 const match = require('./match')
@@ -57,6 +58,7 @@ const create = function* (next) {
   const body = this.request.body
   const user = new User(body)
   user.save()
+  analyze(user)
   this.body = {
     user: user,
     message: 'create'
@@ -76,6 +78,10 @@ const update = function* (next) {
   const body = this.request.body
   const promise = User.update({ uuid: uuid }, { $set: body }, { upsert: false, multi: true }).exec()
   promise.then(() => {
+    analyze({
+      uuid: uuid,
+      profile: body.profile || ''
+    })
     deferred.resolve({
       message: 'updated'
     })

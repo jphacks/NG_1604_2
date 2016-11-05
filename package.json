@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/jphacks/NG_1604_2#readme",
   "dependencies": {
+    "array-flatten": "^2.1.0",
     "axios": "^0.15.2",
     "bluebird": "^3.4.6",
     "co": "^4.6.0",
