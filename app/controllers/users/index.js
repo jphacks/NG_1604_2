@@ -43,9 +43,26 @@ const show = function* (next) {
     promise2.then((users) => {
       console.log(users)
     })
+    const u = {
+      "name": "村田雄介",
+      "gender": "男性",
+      "univ_name": "名古屋大学",
+      "univ_id": "meijyo",
+      "department": "理工学部",
+      "grade": 4,
+      "profile": "アジア各国の英語教育について考えています。使い古したスマートフォンで英語教育をアジア各国に届けます。",
+      "profile_img": "https://pbs.twimg.com/profile_images/378800000730413028/f4285b8685a7b6c95546ed3c5cdb247c_400x400.jpeg",
+      "classes": {
+        "mon": "1,0,0,1,1",
+        "tue": "1,0,0,1,1",
+        "wed": "0,0,0,0,0",
+        "thu": "0,1,1,1,0",
+        "fri": "0,0,0,0,1"
+      }
+    }
     deferred.resolve({
-      user: user,
-      recommends: [user, user, user, user, user],
+      user: u,
+      recommends: [u, u, u, u, u],
       message: 'show'
     })
   })
