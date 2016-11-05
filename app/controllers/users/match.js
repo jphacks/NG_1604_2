@@ -30,7 +30,7 @@ const match = function* (next) {
 */
 const likeTo = (uuid, opponent_uuid) => {
   // opponent_uuid like uuid ならば
-  const promise = Like.count({ uuid: opponent_uuid, like_to: uuid }).exec()
+  const promise = Like.count({ uuid: opponent_uuid, like_to: uuid, is_match: false }).exec()
   promise.then((count) => {
     console.log(`${count}個存在します`)
     if(count > 0) {
