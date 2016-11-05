@@ -60,7 +60,33 @@ const likeEachOther = (uuid, opponent_uuid) => {
 
 // createPrivateRoom(uuid, opponent_uuid)
 const createPrivateRoom = (uuid, opponent_uuid) => {
+  const now = moment().unix()
+  let chatRoom = {
+    title: 'AAAAAAAAAAA',
+    lastMessage: 'プライベートルームです。',
+    isPublic: false,
+    timestamp: now,
+    members: {}
+  }
+  chatRoom['members'][uuid] = { name: 'ぽこひで' }
+  chatRoom['members'][opponent_uuid] = { name: 'ぽこ' }
+  const newChatRoom = fb.database.ref('chatrroms').push()
+  newChatRoom.set(chatRoom)
+  .then(() => {
+    console.log('チャットルームを作成しました。')
+  }).catch((err) => {
+    console.log(err.message)
+  })
 
+  // ユーザから参照できるように
+  fb.database.ref(`users/${uuid}/matches/${opponent_uuid}`).set({
+    timestamp: now,
+    room_id: newChatRoom.key
+  })
+  fb.database.ref(`users/${opponent_uuid}/matches/${uuid}`).set({
+    timestamp: now,
+    room_id: newChatRoom.key
+  })
 }
 
 // uuid like opponent_uuid
