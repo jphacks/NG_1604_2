@@ -30,11 +30,13 @@ const match = function* (next) {
 */
 const likeTo = (uuid, opponent_uuid) => {
   // opponent_uuid like uuid ならば
-  const promise = Like.count({ uuid: opponent_uuid, like_to: uuid, is_match: false }).exec()
-  promise.then((count) => {
-    console.log(`${count}個存在します`)
-    if(count > 0) {
+  const promise = Like.findOne({ uuid: opponent_uuid, like_to: uuid }).exec()
+  promise.then((like) => {
+    console.log(like)
+    if(like && like.is_match === false) {
       likeEachOther(uuid, opponent_uuid)
+    } else if(like && like.is_match === true) {
+      console.log('すでにマッチ済みです')
     } else {
       oneWayLove(uuid, opponent_uuid)
     }
