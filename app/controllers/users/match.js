@@ -17,6 +17,7 @@ const match = function* (next) {
   const result = this.request.body.result
 
   if(result === true) {
+    console.log('match result is true')
     likeTo(uuid, opponent_uuid)
   }
 
@@ -29,9 +30,11 @@ const match = function* (next) {
 * uuidがuu
 */
 const likeTo = (uuid, opponent_uuid) => {
+  console.log(1)
   const promise = Like.count({ uuid: uuid, like_to: opponent_uuid }).exec()
+  console.log(2)
   promise.then((count) => {
-    console.log(count)
+    console.log(`${count}個存在します`)
     if(count > 0) {
       likeEachOther(uuid, opponent_uuid)
     } else {
