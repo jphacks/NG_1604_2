@@ -9,7 +9,11 @@ const Firebase = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messageingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 }
+const gooLabId = process.env.GOO_LAB_API
+const apiToreId = process.env.API_TORE_API
 
 module.exports = {
-  firebase: Firebase
+  firebase: Firebase,
+  gooLabId: gooLabId,
+  apiToreId: apiToreId
 }
