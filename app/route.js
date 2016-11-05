@@ -25,7 +25,7 @@ const route = (app) => {
     .post('/users', body, users.create)
     .post('/users/:uuid', body, users.update)
     .post('/users/:uuid/remove', body, users.remove)
-    .post('/users/match', body, users.match)
+    .post('/users/:uuid/match', body, users.match)
     
 
     .get('/likes', likes.index)
