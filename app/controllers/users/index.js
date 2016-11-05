@@ -92,6 +92,6 @@ module.exports = {
   show: show,
   create: create,
   update: update,
-  remove: remove
+  remove: remove,
   match: match
 }

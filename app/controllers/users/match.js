@@ -98,19 +98,4 @@ const oneWayLove = (uuid, opponent_uuid) => {
   like.save()
 }
 
-
-const match = function* (next) {
-  const deferred = q.defer()
-  const matchProcess = new Match(this.request.body)
-  matchProcess.run()
-
-  // match process
-  deferred.resolve({
-    message: 'ok'
-  })
-  // deferred.reject({ message: err })
-
-  this.body = yield deferred.promise 
-}
-
 module.exports = match

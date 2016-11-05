@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 const moment = require('moment')
 
-const Schema = mongoose.Schama
+const Schema = mongoose.Schema
 const LikeSchema = new Schema({
   uuid:       {type: String, required: true},
   like_to:    {type: String, required: true},
