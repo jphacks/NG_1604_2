@@ -10,7 +10,7 @@ const moment = require('moment')
 * POST /api/users/:uuid/match
 * @param {integer} uuid
 */
-const match = function* (next) {
+const like = function* (next) {
   const deferred = q.defer()
   const uuid = this.params.uuid
   const opponent_uuid = this.request.body.opponent_uuid
@@ -109,4 +109,4 @@ const oneWayLove = (uuid, opponent_uuid) => {
   like.save()
 }
 
-module.exports = match
+module.exports = like

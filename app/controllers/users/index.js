@@ -5,7 +5,7 @@ const User = require('../../models/users')
 const analyze = require('../../../lib/analyze')
 const q = require('q')
 
-const match = require('./match')
+const like = require('./like')
 
 /*
 * GET /api/users
@@ -146,5 +146,5 @@ module.exports = {
   create: create,
   update: update,
   remove: remove,
-  match: match
+  like: like
 }
