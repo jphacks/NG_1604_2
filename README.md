@@ -7,6 +7,8 @@
 [![Bluebird](https://img.shields.io/badge/bluebird-3.4.6-blue.svg)](http://bluebirdjs.com/docs/getting-started.html)
 [![Koa](https://img.shields.io/badge/koa-1.2.4-blue.svg)](http://koajs.com/)
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## 概要
 [NG_1604](https://github.com/jphacks/NG_1604)のサーバーサイドです。
 
@@ -78,6 +80,8 @@ Firebaseで保持しています。この解析データをもとにレコメン
 |analyze|ユーザのProfileを走査|ユーザ更新時|
 
 ## 独自技術
+
+### Herokuに自動デプロイ
 
 ### Promise
 `bluebird`や`axios`, `q`を用いて基本的な処理は全てPromise形式で、返して状態や遷移を保証しました。
